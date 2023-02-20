@@ -67,28 +67,4 @@ public class Pedido {
 		return answ;
 	}
 	
-	public boolean equals(Object otroPedido) {
-		if (this == otroPedido) {    
-          return true;    
-		}
-		if (otroPedido instanceof Pedido) {
-			Pedido elOtroPedido = (Pedido) otroPedido;
-			ArrayList<Producto> itemsEste = this.getItems();
-			ArrayList<Producto> itemsOtro = elOtroPedido.getItems();
-			if (itemsEste.size() == itemsOtro.size()) {
-				Iterator<Producto> iteradorEste = itemsEste.iterator();
-				Iterator<Producto> iteradorOtro = itemsOtro.iterator();
-				while(iteradorEste.hasNext()) {
-					 if (iteradorEste.next().equals(iteradorOtro.next())) {
-						 ;
-					 } else {
-						 return false;
-					 }
-				}
-		    }
-			
-		}
-		
-		return false;
-	}
 }

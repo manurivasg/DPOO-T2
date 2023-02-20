@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Map;
 
 import Modelo.Restaurante;
+import Modelo.Producto;
 import Modelo.Combo;
 import Modelo.Ingrediente;
 import Modelo.Pedido;
@@ -20,8 +22,7 @@ public class Aplicacion
 	{
 		System.out.println("Bienvenidos al restaurante!\n");
 
-		boolean continuar = true;
-		while (continuar)
+		while (true);
 		{
 			try
 			{
@@ -32,7 +33,7 @@ public class Aplicacion
 					cargarArchivos();
 					}
 				
-				else if (opcion == 2 && restaurante != null)
+				else if (opcion == 2)
 				{
 					
 					System.out.println("\nProductos: \n");
@@ -41,7 +42,7 @@ public class Aplicacion
 					mostrarCombos();
 				}
 				
-				else if (opcion==3);
+				else if (opcion == 3)
 				{
 					String nombreCliente = input("Ingrese el nombre del cliente");
 					String direccionCliente = input("Ingrese la direccion del cliente");
@@ -49,18 +50,42 @@ public class Aplicacion
 					System.out.println("ID del pedido en curso : " + Integer.toString(ID));
 				}
 				
-				else if (opcion==4);
+				else if (opcion == 4)
+				{
+					
+				}
+					
+				else if (opcion==5)
 				{
 					String ID = input("Ingrese el ID");
-					while(true);
+					Pedido pedidosolicitado = restaurante.getPedidoEnCurso().get(ID);
+					ArrayList<Modelo.Producto> items = pedidosolicitado.getItems();
+					for (Modelo.Producto elementos: items);
 					{
-					Map<String, Modelo.Pedido> pedido = restaurante.getPedidoEnCurso();
-					Modelo.Pedido pedido_este = pedido.get(ID);
-					int productoseleccionado = Integer.parseInt(input("Ingrese el numero del producto que desea"));
-					
+						System.out.println(elementos.getNombre() + "\nPrecio: $ " + elementos.getPrecio());
 					}
 				}
+				
+				else if(opcion==6)
+				{
+					String ID = input("Ingrese el ID para facturación");
+					Pedido pedidosolicitado = restaurante.getPedidoEnCurso().get(ID);
+					ArrayList<Modelo.Producto> listaitems = pedidosolicitado.getItems();
+					String factura = pedidosolicitado.generarTextoFactura();
+					System.out.println("\n Factura: \n");
+					for (Modelo.Producto elements: listaitems)
+					{
+						System.out.println("\nProducto: " + elements.getNombre() + "\n" + elements.generarTextoFactura());				
+					}
+					System.out.println(factura);
 				}
+				
+				else
+				{
+					System.out.println("Adios :)");
+					break;
+				}
+			}
 	public void mostrarApp()
 	{
 		System.out.println("\nOpciones de la aplicación\n");
